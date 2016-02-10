@@ -1,0 +1,1 @@
+/usr/bin/c++   -g    CMakeFiles/testPololu.dir/first.cpp.o  -o testPololu -rdynamic -lusb-1.0 

@@ -1,0 +1,8 @@
+# Hashes of file build rules.
+204cefb17b43132861d8ea77d85194d3 moc_adafruit_widget.cpp
+9d2cfef854a3ce33387f1d30378dc5ee moc_mainwindow.cpp
+c0cdf9d1be1b3afc2ba50d85de154932 moc_pololu_controller.cpp
+85f7d64829ca8d68b5fd2a0b873fe3ec moc_pololu_controller_widget.cpp
+1477dc0c62d04936739bab24a5af4c4b ui_adafruit_widget.h
+d6aecf40457b0b2059d3a2391d70b3f9 ui_mainwindow.h
+40e8064a08e43abc41090fa4d652d7aa ui_pololu_controller_widget.h

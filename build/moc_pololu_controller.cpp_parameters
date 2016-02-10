@@ -1,0 +1,6 @@
+-I/home/silvio/git/testPololu/build
+-I/home/silvio/git/testPololu/../testPololu
+-I/usr/include/libusb-1.0
+-o
+/home/silvio/git/testPololu/build/moc_pololu_controller.cpp
+/home/silvio/git/testPololu/pololu_controller.h
