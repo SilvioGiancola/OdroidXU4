@@ -2,6 +2,7 @@
 #define POLOLU_CONTROLLER_WIDGET_H
 
 #include <QWidget>
+#include <QTime>
 #include "pololu_controller.h"
 
 
@@ -33,12 +34,12 @@ private slots:
     void on_spinBox_Servo4_valueChanged(int value){ myController->setPWM(4,value); }
     void on_spinBox_Servo5_valueChanged(int value){ myController->setPWM(5,value); }
 
-    void on_pushButton_Servo0_clicked() {myController->impulse(0);}
-    void on_pushButton_Servo1_clicked() {myController->impulse(1);}
-    void on_pushButton_Servo2_clicked() {myController->impulse(2);}
-    void on_pushButton_Servo3_clicked() {myController->impulse(3);}
-    void on_pushButton_Servo4_clicked() {myController->impulse(4);}
-    void on_pushButton_Servo5_clicked() {myController->impulse(5);}
+    void on_pushButton_Servo0_clicked();
+    void on_pushButton_Servo1_clicked();
+    void on_pushButton_Servo2_clicked();
+    void on_pushButton_Servo3_clicked();
+    void on_pushButton_Servo4_clicked();
+    void on_pushButton_Servo5_clicked();
 
 
 private:

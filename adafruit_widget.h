@@ -5,8 +5,8 @@
 #include "adafruit_uart.h"
 
 
-#include <pcl/visualization/pcl_visualizer.h>
-#include <vtkRenderWindow.h>
+//#include <pcl/visualization/pcl_visualizer.h>
+//#include <vtkRenderWindow.h>
 
 
 
@@ -43,7 +43,7 @@ private:
     Ui::AdafruitWidget *ui;
     Adafruit_UART * myIMU;
 
-    pcl::visualization::PCLVisualizer::Ptr viewer;
+  //  pcl::visualization::PCLVisualizer::Ptr viewer;
 
 };
 

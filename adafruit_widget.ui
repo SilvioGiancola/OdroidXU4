@@ -44,10 +44,10 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="pushButton_Calib">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton_Init">
         <property name="text">
-         <string>Get Calib</string>
+         <string>Init</string>
         </property>
        </widget>
       </item>
@@ -58,6 +58,13 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="pushButton_Calib">
+        <property name="text">
+         <string>Get Calib</string>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="1">
        <widget class="QLabel" name="label_Quaternion">
         <property name="text">
@@ -65,32 +72,11 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="pushButton_Init">
-        <property name="text">
-         <string>Init</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="2">
-       <widget class="QVTKWidget" name="qvtkwidget" native="true"/>
-      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QVTKWidget</class>
-   <extends>QWidget</extends>
-   <header>QVTKWidget.h</header>
-   <container>1</container>
-   <slots>
-    <slot>setEnable(int)</slot>
-   </slots>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

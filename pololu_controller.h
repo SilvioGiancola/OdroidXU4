@@ -62,10 +62,13 @@ public:
     // Close libusb connection
     void close()
     {
-        libusb_close(_device_handle);
-        libusb_free_device_list(_device_list, 0);
-        libusb_exit(_ctx);
-        _open = false;
+        if (isopen())
+        {
+            libusb_close(_device_handle);
+            libusb_free_device_list(_device_list, 0);
+            libusb_exit(_ctx);
+            _open = false;
+        }
     }
 
     // Return true if libusb is opened

@@ -6,7 +6,7 @@ AdafruitWidget::AdafruitWidget(QWidget * parent) : QWidget(parent), ui(new Ui::A
 {
     ui->setupUi(this);
     myIMU = new Adafruit_UART();
-
+/*
     viewer.reset(new pcl::visualization::PCLVisualizer("Viewer",false));
     ui->qvtkwidget->SetRenderWindow(viewer->getRenderWindow());
     viewer->setCameraPosition(-5,1,1, // mi posiziono dietro ad un Kinect
@@ -23,11 +23,13 @@ AdafruitWidget::AdafruitWidget(QWidget * parent) : QWidget(parent), ui(new Ui::A
     // point selected (shift + left click) info
     viewer->setupInteractor(ui->qvtkwidget->GetInteractor(),ui->qvtkwidget->GetRenderWindow());
     viewer->getInteractorStyle()->setKeyboardModifier(pcl::visualization::INTERACTOR_KB_MOD_SHIFT);
-
+*/
 }
 
 AdafruitWidget::~AdafruitWidget()
 {
+    if (myIMU->isOpen())
+            myIMU->close();
     delete ui;
 }
 
@@ -61,10 +63,10 @@ void AdafruitWidget::on_pushButton_Quaternion_clicked()
     QString label = QString("%1 / %2 / %3 / %4").arg(quat.w()).arg(quat.x()).arg(quat.y()).arg(quat.z());
     ui->label_Quaternion->setText(label);
 
-    if (viewer->contains("markers"))
-        viewer->removeCoordinateSystem("markers");
-    viewer->addCoordinateSystem(0.5,Eigen::Affine3f(quat.matrix()),"markers");
-    ui->qvtkwidget->update ();
+//    if (viewer->contains("markers"))
+//        viewer->removeCoordinateSystem("markers");
+//    viewer->addCoordinateSystem(0.5,Eigen::Affine3f(quat.matrix()),"markers");
+//    ui->qvtkwidget->update ();
 }
 
 void AdafruitWidget::on_pushButton_Init_clicked()
