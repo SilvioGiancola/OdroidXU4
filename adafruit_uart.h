@@ -77,6 +77,9 @@ public:
     // Open/Close the Serial connection
     int open()
     {
+        if (isopen())
+            return SUCCESS;
+
         QList < QSerialPortInfo > ava = QSerialPortInfo::availablePorts();
         foreach (const QSerialPortInfo &info, ava )
         {
@@ -122,10 +125,11 @@ public:
 
     void close()
     {
-        serial.close();
+        if(isopen())
+            serial.close();
     }
 
-    bool isOpen()
+    bool isopen()
     {
         return serial.isOpen();
     }
@@ -135,7 +139,7 @@ public:
     int init()
     {
         std::cout << "  --> INIT <--  " << std::endl;
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -246,7 +250,7 @@ public:
     int ReadAllData(Adafruit_Data * result)
     {
 
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -301,7 +305,7 @@ public:
     // Read the accelerometer;
     int GetAcc(Eigen::Vector3f * acc)
     {
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -325,7 +329,7 @@ public:
     // Read the magnetometer;
     int GetMag(Eigen::Vector3f * mag)
     {
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -349,7 +353,7 @@ public:
     // Read the linear_acceleration;
     int GetLia(Eigen::Vector3f * lia)
     {
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -373,7 +377,7 @@ public:
     // Read the gyroscope;
     int GetGyr(Eigen::Vector3f * gyr)
     {
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -397,7 +401,7 @@ public:
     // Read the euler_angles;
     int GetEul(Eigen::Vector3f * eul)
     {
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -422,7 +426,7 @@ public:
     int GetQuat(Eigen::Quaternionf * quat)
     {
 
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;
@@ -449,7 +453,7 @@ public:
     // Read the gravity;
     int GetGrv(Eigen::Vector3f * grv)
     {
-        if ( !isOpen() )
+        if ( !isopen() )
         {
             std::cout << "  -> Error Device not opened" << std::endl;
             return ERROR;

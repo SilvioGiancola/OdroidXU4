@@ -1,34 +1,17 @@
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
 
 # Set Project Name
-PROJECT(testSfM)
-
+PROJECT(OdroidXU4)
 
 # include the current directory
 SET(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-# Add PkgConfig
+# Add PkgConfig (for libusb-1.0)
 find_package(PkgConfig REQUIRED)
 
 # add libusb-1.0 with pkg-config
 pkg_search_module(LIBUSB1 REQUIRED libusb-1.0)
 include_directories(SYSTEM ${LIBUSB1_INCLUDE_DIRS})
-
-
-## find VTK
-#set(VTK_DIR "/usr/local/lib")
-#find_package(VTK 6.2 REQUIRED)
-#include(${VTK_USE_FILE})
-
-## add pcl
-#find_package(PCL 1.8 REQUIRED)
-#IF(PCL_FOUND)
-#   MESSAGE(STATUS "Found PCL: ${PCL_INCLUDE_DIRS} VERSION : ${PCL_VERSION}")
-#endif()
-#include_directories(${PCL_INCLUDE_DIRS})
-#link_directories(${PCL_LIBRARY_DIRS})
-#add_definitions(${PCL_DEFINITIONS})
-
 
 
 #ADD_EXECUTABLE(testPololu first.cpp protocol.h)
@@ -38,8 +21,10 @@ include_directories(SYSTEM ${LIBUSB1_INCLUDE_DIRS})
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5SerialPort REQUIRED)
 
-QT5_WRAP_CPP(PROJECT_SRC mainwindow.h pololu_controller_widget.h adafruit_widget.h)
-QT5_WRAP_UI(PROJECT_UI mainwindow.ui pololu_controller_widget.ui adafruit_widget.ui)
+QT5_WRAP_CPP(QT_HEADERS mainwindow.h pololu_controller_widget.h adafruit_widget.h)
+QT5_WRAP_UI(QT_UIS mainwindow.ui pololu_controller_widget.ui adafruit_widget.ui)
+set(HEADERS adafruit_uart.h pololu_controller.h protocol.h)
+set(SOURCES mainwindow.cpp pololu_controller_widget.cpp adafruit_widget.cpp)
 
-ADD_EXECUTABLE(testPololuGUI ${PROJECT_UI} ${PROJECT_SRC} mainwindow.cpp pololu_controller_widget.cpp adafruit_widget.cpp adafruit_uart.h pololu_controller.h protocol.h)
-TARGET_LINK_LIBRARIES(testPololuGUI ${LIBUSB1_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5SerialPort_LIBRARIES} ${PCL_LIBRARIES})
+ADD_EXECUTABLE(testPololuGUI ${SOURCES} ${HEADERS} ${QT_HEADERS} ${QT_UIS}  )
+TARGET_LINK_LIBRARIES(testPololuGUI ${LIBUSB1_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5SerialPort_LIBRARIES})

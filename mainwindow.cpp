@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     // Set the user interface from Qt Designer
     ui->setupUi(this);
+    ui->lineEdit_path->setText(QString("%1/test.txt").arg(QDir::homePath()));
 }
 
 // Destructor
@@ -35,4 +36,22 @@ int main(int argc, char *argv[])
     w.show();
 
     return a.exec();
+}
+
+void MainWindow::on_pushButton_openall_clicked()
+{
+    ui->myAdafruit->openConnection();
+    ui->myPololuController->open();
+}
+
+void MainWindow::on_pushButton_closeall_clicked()
+{
+    ui->myAdafruit->closeConnection();
+    ui->myPololuController->close();
+}
+
+void MainWindow::on_pushButton_graball_clicked()
+{
+    Eigen::Quaternionf quat = ui->myAdafruit->getQuaternion();
+    ui->myPololuController->impulse(0);
 }

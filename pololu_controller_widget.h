@@ -19,11 +19,14 @@ public:
     PololuControllerWidget(QWidget * parent=0);
     ~PololuControllerWidget();
 
-signals:
 
-public slots:
+    int open() {return myController->open();}
+    void close() {return myController->close();}
 
-private slots:    
+    void impulse(int channel) {myController->impulse(channel);}
+
+
+private slots:
     void on_pushButton_Open_clicked();
     void on_pushButton_Close_clicked();
 

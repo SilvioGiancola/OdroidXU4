@@ -6,7 +6,7 @@ AdafruitWidget::AdafruitWidget(QWidget * parent) : QWidget(parent), ui(new Ui::A
 {
     ui->setupUi(this);
     myIMU = new Adafruit_UART();
-/*
+    /*
     viewer.reset(new pcl::visualization::PCLVisualizer("Viewer",false));
     ui->qvtkwidget->SetRenderWindow(viewer->getRenderWindow());
     viewer->setCameraPosition(-5,1,1, // mi posiziono dietro ad un Kinect
@@ -28,25 +28,24 @@ AdafruitWidget::AdafruitWidget(QWidget * parent) : QWidget(parent), ui(new Ui::A
 
 AdafruitWidget::~AdafruitWidget()
 {
-    if (myIMU->isOpen())
-            myIMU->close();
+    if (myIMU->isopen())
+        myIMU->close();
     delete ui;
 }
 
 
-
-
-void AdafruitWidget::on_pushButton_Open_clicked()
+void AdafruitWidget::openConnection()
 {
     if(myIMU->open() == SUCCESS)
         ui->groupBox->setEnabled(true);
-
+    return;
 }
 
-void AdafruitWidget::on_pushButton_Close_clicked()
+void AdafruitWidget::closeConnection()
 {
     myIMU->close();
     ui->groupBox->setEnabled(false);
+    return;
 }
 
 
@@ -57,24 +56,17 @@ void AdafruitWidget::on_pushButton_Close_clicked()
 
 
 
-void AdafruitWidget::on_pushButton_Quaternion_clicked()
+Eigen::Quaternionf AdafruitWidget::getQuaternion()
 {
     Eigen::Quaternionf quat = myIMU->returnPose();
     QString label = QString("%1 / %2 / %3 / %4").arg(quat.w()).arg(quat.x()).arg(quat.y()).arg(quat.z());
     ui->label_Quaternion->setText(label);
-
-//    if (viewer->contains("markers"))
-//        viewer->removeCoordinateSystem("markers");
-//    viewer->addCoordinateSystem(0.5,Eigen::Affine3f(quat.matrix()),"markers");
-//    ui->qvtkwidget->update ();
+    return myIMU->returnPose();
 }
 
-void AdafruitWidget::on_pushButton_Init_clicked()
+void AdafruitWidget::initializeSensor()
 {
     myIMU->init();
+    return;
 }
 
-void AdafruitWidget::on_pushButton_Calib_clicked()
-{
-
-}

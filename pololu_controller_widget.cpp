@@ -22,13 +22,13 @@ PololuControllerWidget::~PololuControllerWidget()
 
 void PololuControllerWidget::on_pushButton_Open_clicked()
 {
-    if (myController->open() == SUCCESS)
+    if (open() == SUCCESS)
         ui->groupBox->setEnabled(true);
 }
 
 void PololuControllerWidget::on_pushButton_Close_clicked()
 {
-    myController->close();
+    close();
     ui->groupBox->setEnabled(false);
 }
 
@@ -40,7 +40,7 @@ void PololuControllerWidget::on_pushButton_Servo0_clicked()
     myController->setPWM(channel,2000);
     QTime t;
     t.start();
-    while (t.elapsed() < 1000)
+    while (t.elapsed() < 600)
     {
         ui->lcdNumber_timer->display(t.elapsed());
         ui->label_timer->setText(QString::number(t.elapsed()));

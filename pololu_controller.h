@@ -35,6 +35,9 @@ public:
     // Open libusb connection
     int open()
     {
+
+        if (isopen())
+            return SUCCESS;
         const unsigned short vendorId = 0x1ffb;
         unsigned short productIDArray[]={0x0089, 0x008a, 0x008b, 0x008c};
 

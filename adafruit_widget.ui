@@ -78,5 +78,59 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_Open</sender>
+   <signal>clicked()</signal>
+   <receiver>AdafruitWidget</receiver>
+   <slot>openConnection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Close</sender>
+   <signal>clicked()</signal>
+   <receiver>AdafruitWidget</receiver>
+   <slot>closeConnection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>54</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>432</x>
+     <y>167</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Quaternion</sender>
+   <signal>clicked()</signal>
+   <receiver>AdafruitWidget</receiver>
+   <slot>getQuaternion()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>openConnection()</slot>
+  <slot>closeConnection()</slot>
+  <slot>getQuaternion()</slot>
+ </slots>
 </ui>

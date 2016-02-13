@@ -22,23 +22,15 @@ public:
     AdafruitWidget(QWidget * parent=0);
     ~AdafruitWidget();
 
-signals:
 
 public slots:
+    void openConnection();
+    void closeConnection();
 
-private slots:    
-    void on_pushButton_Open_clicked();
-    void on_pushButton_Close_clicked();
+    void initializeSensor();
 
-
-
-
-    void on_pushButton_Quaternion_clicked();
-
-    void on_pushButton_Init_clicked();
-
-    void on_pushButton_Calib_clicked();
-
+    Eigen::Quaternionf getQuaternion();
+    
 private:
     Ui::AdafruitWidget *ui;
     Adafruit_UART * myIMU;
