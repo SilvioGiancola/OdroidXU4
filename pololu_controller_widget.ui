@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>618</width>
-    <height>417</height>
+    <width>785</width>
+    <height>428</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,6 +44,12 @@
         </property>
         <property name="maximum">
          <number>2000</number>
+        </property>
+        <property name="singleStep">
+         <number>50</number>
+        </property>
+        <property name="pageStep">
+         <number>50</number>
         </property>
         <property name="value">
          <number>1500</number>
@@ -90,6 +96,12 @@
         </property>
         <property name="maximum">
          <number>2000</number>
+        </property>
+        <property name="singleStep">
+         <number>50</number>
+        </property>
+        <property name="pageStep">
+         <number>50</number>
         </property>
         <property name="value">
          <number>1500</number>
@@ -162,6 +174,12 @@
         <property name="maximum">
          <number>2000</number>
         </property>
+        <property name="singleStep">
+         <number>50</number>
+        </property>
+        <property name="pageStep">
+         <number>50</number>
+        </property>
         <property name="value">
          <number>1500</number>
         </property>
@@ -192,6 +210,12 @@
         <property name="maximum">
          <number>2000</number>
         </property>
+        <property name="singleStep">
+         <number>50</number>
+        </property>
+        <property name="pageStep">
+         <number>50</number>
+        </property>
         <property name="value">
          <number>1500</number>
         </property>
@@ -208,6 +232,12 @@
         <property name="maximum">
          <number>2000</number>
         </property>
+        <property name="singleStep">
+         <number>50</number>
+        </property>
+        <property name="pageStep">
+         <number>50</number>
+        </property>
         <property name="value">
          <number>1500</number>
         </property>
@@ -223,6 +253,12 @@
         </property>
         <property name="maximum">
          <number>2000</number>
+        </property>
+        <property name="singleStep">
+         <number>50</number>
+        </property>
+        <property name="pageStep">
+         <number>50</number>
         </property>
         <property name="value">
          <number>1500</number>
@@ -341,8 +377,8 @@
      <y>117</y>
     </hint>
     <hint type="destinationlabel">
-     <x>427</x>
-     <y>116</y>
+     <x>611</x>
+     <y>127</y>
     </hint>
    </hints>
   </connection>
@@ -357,8 +393,8 @@
      <y>140</y>
     </hint>
     <hint type="destinationlabel">
-     <x>435</x>
-     <y>153</y>
+     <x>611</x>
+     <y>162</y>
     </hint>
    </hints>
   </connection>
@@ -373,8 +409,8 @@
      <y>177</y>
     </hint>
     <hint type="destinationlabel">
-     <x>429</x>
-     <y>186</y>
+     <x>611</x>
+     <y>197</y>
     </hint>
    </hints>
   </connection>
@@ -389,7 +425,7 @@
      <y>214</y>
     </hint>
     <hint type="destinationlabel">
-     <x>459</x>
+     <x>611</x>
      <y>223</y>
     </hint>
    </hints>
@@ -405,7 +441,7 @@
      <y>245</y>
     </hint>
     <hint type="destinationlabel">
-     <x>469</x>
+     <x>611</x>
      <y>261</y>
     </hint>
    </hints>
@@ -421,8 +457,8 @@
      <y>292</y>
     </hint>
     <hint type="destinationlabel">
-     <x>424</x>
-     <y>291</y>
+     <x>611</x>
+     <y>302</y>
     </hint>
    </hints>
   </connection>
@@ -433,8 +469,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>428</x>
-     <y>112</y>
+     <x>611</x>
+     <y>127</y>
     </hint>
     <hint type="destinationlabel">
      <x>370</x>
@@ -449,8 +485,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>427</x>
-     <y>157</y>
+     <x>611</x>
+     <y>162</y>
     </hint>
     <hint type="destinationlabel">
      <x>397</x>
@@ -465,8 +501,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>440</x>
-     <y>194</y>
+     <x>611</x>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
      <x>384</x>
@@ -481,8 +517,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>426</x>
-     <y>227</y>
+     <x>611</x>
+     <y>232</y>
     </hint>
     <hint type="destinationlabel">
      <x>379</x>
@@ -497,8 +533,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>442</x>
-     <y>256</y>
+     <x>611</x>
+     <y>267</y>
     </hint>
     <hint type="destinationlabel">
      <x>379</x>
@@ -513,8 +549,8 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>420</x>
-     <y>286</y>
+     <x>611</x>
+     <y>302</y>
     </hint>
     <hint type="destinationlabel">
      <x>378</x>
@@ -522,5 +558,143 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_Servo0</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>impulseChannel0()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>758</x>
+     <y>113</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>781</x>
+     <y>83</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Servo1</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>impulseChannel1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>750</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>780</x>
+     <y>147</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Servo2</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>impulseChannel2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>757</x>
+     <y>180</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>782</x>
+     <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Servo3</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>impulseChannel3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>758</x>
+     <y>216</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>778</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Servo4</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>impulseChannel4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>756</x>
+     <y>257</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>256</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Servo5</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>impulseChannel5()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>761</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>779</x>
+     <y>292</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Open</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>openConnection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>785</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Close</sender>
+   <signal>clicked()</signal>
+   <receiver>PololuControllerWidget</receiver>
+   <slot>closeConnection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>755</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>782</x>
+     <y>61</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>impulseChannel0()</slot>
+  <slot>impulseChannel1()</slot>
+  <slot>impulseChannel2()</slot>
+  <slot>impulseChannel3()</slot>
+  <slot>impulseChannel4()</slot>
+  <slot>impulseChannel5()</slot>
+  <slot>openConnection()</slot>
+  <slot>closeConnection()</slot>
+ </slots>
 </ui>

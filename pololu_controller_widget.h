@@ -20,15 +20,20 @@ public:
     ~PololuControllerWidget();
 
 
-    int open() {return myController->open();}
-    void close() {return myController->close();}
+public slots:
+    void openConnection();
+    void closeConnection();
 
-    void impulse(int channel) {myController->impulse(channel);}
+    void impulseChannel0();
+
+    void impulseChannel1() {myController->impulse(1);}
+    void impulseChannel2() {myController->impulse(2);}
+    void impulseChannel3() {myController->impulse(3);}
+    void impulseChannel4() {myController->impulse(4);}
+    void impulseChannel5() {myController->impulse(5);}
 
 
 private slots:
-    void on_pushButton_Open_clicked();
-    void on_pushButton_Close_clicked();
 
     void on_spinBox_Servo0_valueChanged(int value){ myController->setPWM(0,value); }
     void on_spinBox_Servo1_valueChanged(int value){ myController->setPWM(1,value); }
@@ -37,12 +42,6 @@ private slots:
     void on_spinBox_Servo4_valueChanged(int value){ myController->setPWM(4,value); }
     void on_spinBox_Servo5_valueChanged(int value){ myController->setPWM(5,value); }
 
-    void on_pushButton_Servo0_clicked();
-    void on_pushButton_Servo1_clicked();
-    void on_pushButton_Servo2_clicked();
-    void on_pushButton_Servo3_clicked();
-    void on_pushButton_Servo4_clicked();
-    void on_pushButton_Servo5_clicked();
 
 
 private:

@@ -20,20 +20,21 @@ PololuControllerWidget::~PololuControllerWidget()
 
 
 
-void PololuControllerWidget::on_pushButton_Open_clicked()
+
+void PololuControllerWidget::openConnection()
 {
-    if (open() == SUCCESS)
+    if (myController->open() == SUCCESS)
         ui->groupBox->setEnabled(true);
 }
 
-void PololuControllerWidget::on_pushButton_Close_clicked()
+void PololuControllerWidget::closeConnection()
 {
-    close();
+    myController->close();
     ui->groupBox->setEnabled(false);
 }
 
 
-void PololuControllerWidget::on_pushButton_Servo0_clicked()
+void PololuControllerWidget::impulseChannel0()
 {
     int channel = 0;
     int previousvalue = myController->getPWM(channel);
@@ -49,15 +50,3 @@ void PololuControllerWidget::on_pushButton_Servo0_clicked()
     myController->setPWM(channel, previousvalue);
 
 }
-void PololuControllerWidget::on_pushButton_Servo1_clicked() {myController->impulse(1);}
-void PololuControllerWidget::on_pushButton_Servo2_clicked() {myController->impulse(2);}
-void PololuControllerWidget::on_pushButton_Servo3_clicked() {myController->impulse(3);}
-void PololuControllerWidget::on_pushButton_Servo4_clicked() {myController->impulse(4);}
-void PololuControllerWidget::on_pushButton_Servo5_clicked() {myController->impulse(5);}
-
-
-
-
-
-
-

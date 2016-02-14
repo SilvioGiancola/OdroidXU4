@@ -41,17 +41,17 @@ int main(int argc, char *argv[])
 void MainWindow::on_pushButton_openall_clicked()
 {
     ui->myAdafruit->openConnection();
-    ui->myPololuController->open();
+    ui->myPololuController->openConnection();
 }
 
 void MainWindow::on_pushButton_closeall_clicked()
 {
     ui->myAdafruit->closeConnection();
-    ui->myPololuController->close();
+    ui->myPololuController->closeConnection();
 }
 
 void MainWindow::on_pushButton_graball_clicked()
 {
     Eigen::Quaternionf quat = ui->myAdafruit->getQuaternion();
-    ui->myPololuController->impulse(0);
+    ui->myPololuController->impulseChannel0();
 }
