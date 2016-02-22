@@ -39,15 +39,20 @@
 
 
 #include <QWidget>
+#include <QDebug>
 #include <eigen3/Eigen/Geometry>
 
 
-class YEI_IMU
+class YEI_IMU : public QWidget
 {
+    Q_OBJECT
 public:
 
     // Constructor
-    explicit YEI_IMU(QWidget *parent = 0) { }
+    explicit YEI_IMU(QWidget *parent = 0) : QWidget(parent)
+    {
+
+    }
 
 
     // Open/Close the Serial connection
@@ -56,14 +61,11 @@ public:
         QList < QSerialPortInfo > ava = QSerialPortInfo::availablePorts();
         foreach (const QSerialPortInfo &info, ava )
         {
-            //  if (info.description() == QString("USB-Serial Controller"))
-            //   if (info.manufacturer() == QString("Prolific Technology Inc."))
             if(info.vendorIdentifier() == 0x2476)
                 if(info.productIdentifier() == 0x1010)
                     serial.setPortName(info.portName());
 
         }
-        std::cout << serial.portName().toStdString() <<std::endl;
 
         if (serial.portName().isEmpty())
             return ERR_PLUG;
@@ -119,7 +121,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return quat;
@@ -133,7 +135,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return;
@@ -152,7 +154,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return;
@@ -173,7 +175,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return quat;
@@ -192,7 +194,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return euler;
@@ -211,7 +213,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return matrix;
@@ -229,7 +231,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return angleAxis;
@@ -249,7 +251,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return quat;
@@ -269,7 +271,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return quat;
@@ -288,7 +290,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return euler;
@@ -307,7 +309,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return matrix;
@@ -325,7 +327,7 @@ public:
         }
         else
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
         }
 
         return angleAxis;

@@ -5,25 +5,7 @@
 AdafruitWidget::AdafruitWidget(QWidget * parent) : QWidget(parent), ui(new Ui::AdafruitWidget)
 {
     ui->setupUi(this);
-    myIMU = new Adafruit_UART();
-    /*
-    viewer.reset(new pcl::visualization::PCLVisualizer("Viewer",false));
-    ui->qvtkwidget->SetRenderWindow(viewer->getRenderWindow());
-    viewer->setCameraPosition(-5,1,1, // mi posiziono dietro ad un Kinect
-                              0.5,0.5,0.5, // guardo un punto centrale
-                              0,0,1);   // orientato con la y verso l'alto
-    viewer->setCameraClipDistances(-10,10);
-    viewer->setBackgroundColor (0.5, 0.5, 0.5);
-    viewer->addCoordinateSystem(1.0, "Main Reference System");
-    ui->qvtkwidget->update ();
-
-
-
-
-    // point selected (shift + left click) info
-    viewer->setupInteractor(ui->qvtkwidget->GetInteractor(),ui->qvtkwidget->GetRenderWindow());
-    viewer->getInteractorStyle()->setKeyboardModifier(pcl::visualization::INTERACTOR_KB_MOD_SHIFT);
-*/
+    myIMU = new Adafruit_UART();   
 }
 
 AdafruitWidget::~AdafruitWidget()

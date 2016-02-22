@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QDir>
 
 
 namespace Ui {
@@ -20,11 +21,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_openall_clicked();
 
-    void on_pushButton_closeall_clicked();
+    void OpenAllDevices();
+    void CloseAllDevices();
+    void GrabAllDevices();
 
-    void on_pushButton_graball_clicked();
+
     void newTCPIPConnection();
     void newMessageReceived();
 

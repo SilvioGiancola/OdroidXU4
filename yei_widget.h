@@ -2,6 +2,8 @@
 #define YEI_WIDGET_H
 
 #include <QWidget>
+#include <QDir>
+#include <QFile>
 #include "yei_imu.h"
 
 
@@ -23,10 +25,13 @@ public slots:
     void closeConnection();
 
     Eigen::Quaternionf getQuaternion();
-    
+
+
 private:
     Ui::YEIWidget *ui;
     YEI_IMU * myIMU;
+
+    QFile * myLogFile;
 
 };
 

@@ -42,6 +42,7 @@
 #include <QThread>
 #include <eigen3/Eigen/Geometry>
 
+#include <QDebug>
 #include <QMutex>
 #include <QMutexLocker>
 
@@ -138,34 +139,34 @@ public:
     // Try first communication and initialize the device
     int init()
     {
-        std::cout << "  --> INIT <--  " << std::endl;
+        qDebug() << "  --> INIT <--  ";
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
 
-        std::cout << "Checking device ID, FW and BootLoader" << std::endl;
+        qDebug() << "Checking device ID, FW and BootLoader";
         if ( CheckDevice() != SUCCESS )
         {
-            std::cout << "  -> Error Checking Device" << std::endl;
+            qWarning() << "  -> Error Checking Device";
             return ERROR;
         }
 
 
-        std::cout << "Set OPR_MODE to CONFIG MODE" << std::endl;
+        qDebug() << "Set OPR_MODE to CONFIG MODE";
         if ( WriteRegister((quint8) REG_OPR_MODE, (quint8)0x00) != SUCCESS )
         {
-            std::cout << "  -> Error entering in config mode" << std::endl;
+            qWarning() << "  -> Error entering in config mode";
             return ERROR;
         }
 
 
-        std::cout << "Set REG_SYS_TRIGGER to 20" << std::endl;
+        qDebug() << "Set REG_SYS_TRIGGER to 20";
         if ( WriteRegister((quint8) REG_SYS_TRIGGER, (quint8)0x20, false) != SUCCESS )
         {
-            std::cout << "  -> Error setting REG_SYS_TRIGGER to 20" << std::endl;
+            qWarning() << "  -> Error setting REG_SYS_TRIGGER to 20";
             return ERROR;
         }
 
@@ -173,18 +174,18 @@ public:
         QThread::usleep(1000*1000);
 
 
-        std::cout << "Checking device ID, FW and BootLoader" << std::endl;
+        qDebug() << "Checking device ID, FW and BootLoader";
         if ( CheckDevice() != SUCCESS )
         {
-            std::cout << "  -> Error Checking Device" << std::endl;
+            qWarning() << "  -> Error Checking Device";
             return ERROR;
         }
 
 
-        std::cout << "Set REG_POWER_MODE to 00" << std::endl;
+        qDebug() << "Set REG_POWER_MODE to 00";
         if ( WriteRegister((quint8) REG_PWR_MODE, (quint8)0x00) != SUCCESS )
         {
-            std::cout << "  -> Error setting REG_POWER_MODE to 00" << std::endl;
+            qWarning() << "  -> Error setting REG_POWER_MODE to 00";
             return ERROR;
         }
 
@@ -192,26 +193,26 @@ public:
         QThread::usleep(1000*1000);
 
 
-        std::cout << "Set REG_PAGE_ID to 00" << std::endl;
+        qDebug() << "Set REG_PAGE_ID to 00";
         if ( WriteRegister((quint8) REG_PAGE_ID, (quint8)0x00) != SUCCESS )
         {
-            std::cout << "  -> Error setting REG_PAGE_ID to 00" << std::endl;
+            qWarning() << "  -> Error setting REG_PAGE_ID to 00";
             return ERROR;
         }
 
 
-        std::cout << "Set REG_SYS_TRIGGER to 80" << std::endl;
+        qDebug() << "Set REG_SYS_TRIGGER to 80";
         if ( WriteRegister((quint8) REG_SYS_TRIGGER, (quint8)0x80) != SUCCESS )
         {
-            std::cout << "  -> Error setting REG_SYS_TRIGGER to 20" << std::endl;
+            qWarning() << "  -> Error setting REG_SYS_TRIGGER to 20";
             return ERROR;
         }
 
 
-        std::cout << "Set OPR_MODE to FUSION MODE" << std::endl;
+        qDebug() << "Set OPR_MODE to FUSION MODE";
         if ( WriteRegister((quint8) REG_OPR_MODE, (quint8)0x0C) != SUCCESS )
         {
-            std::cout << "  -> Error entering in FUSION MODE" << std::endl;
+            qWarning() << "  -> Error entering in FUSION MODE";
             return ERROR;
         }
 
@@ -252,7 +253,7 @@ public:
 
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -263,7 +264,7 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)0x2d)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "Error in Adafruit sensor";
             return ERROR;
         }
 
@@ -307,7 +308,7 @@ public:
     {
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -317,7 +318,7 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)6)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "error";
             return ERROR;
         }
 
@@ -331,7 +332,7 @@ public:
     {
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -341,7 +342,7 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)6)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "error";
             return ERROR;
         }
 
@@ -355,7 +356,7 @@ public:
     {
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -365,7 +366,7 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)6)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "error";
             return ERROR;
         }
 
@@ -379,7 +380,7 @@ public:
     {
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -389,7 +390,7 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)6)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "error";
             return ERROR;
         }
 
@@ -403,7 +404,7 @@ public:
     {
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -413,7 +414,7 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)6)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "error";
             return ERROR;
         }
 
@@ -428,7 +429,7 @@ public:
 
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -439,13 +440,13 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)8)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "error";
             return ERROR;
         }
 
         *quat = convertQByteArrayInQuaternionf(input.mid(2,8));
 
-        //  std::cout << quat->matrix() << std::endl;
+        // qDebug() << quat->matrix();
 
         return SUCCESS;
     }
@@ -455,7 +456,7 @@ public:
     {
         if ( !isopen() )
         {
-            std::cout << "  -> Error Device not opened" << std::endl;
+            qWarning() << "  -> Error Device not opened";
             return ERROR;
         }
 
@@ -465,7 +466,7 @@ public:
         if( !(((quint8)input[0] == (quint8)0xBB) &&
               ((quint8)input[1] == (quint8)6)) )
         {
-            std::cout << "error" << std::endl;
+            qWarning() << "error";
             return ERROR;
         }
 
@@ -480,12 +481,13 @@ private:
     void PlotAnswer(QByteArray answer)
     {
 
-        std::cout << "Total Answer is: " <<std::endl;
-        int line = 0;
-        std::cout << std::hex << "    " << (static_cast<quint16>(answer[0])&0xFF) << std::endl;
-        std::cout << std::hex << "    " << (static_cast<quint16>(answer[1])&0xFF) << std::endl;
+        qDebug() << "Total Answer is: ";
+       // int line = 0;
+      //  std::cout << std::hex << "    " << (static_cast<quint16>(answer[0])&0xFF) << std::endl;
+      //  std::cout << std::hex << "    " << (static_cast<quint16>(answer[1])&0xFF) << std::endl;
+        qDebug() << answer;
 
-        for (int i = 2; i < answer.length(); i++)
+      /*  for (int i = 2; i < answer.length(); i++)
         {
             std::cout << std::hex << "    " << (static_cast<quint16>(answer[i])&0xFF);
 
@@ -499,7 +501,7 @@ private:
         std::cout << std::endl;
         std::cout << std::endl;
         std::cout << std::endl;
-
+*/
         return;
     }
 
@@ -507,6 +509,7 @@ private:
     {
         QByteArray answer;
         ReadRegister(answer, (quint8) 0x00, 8);
+        PlotAnswer(answer);
         if ( !(((quint8)answer[0] == (quint8)0xBB) &&
                ((quint8)answer[1] == (quint8)0x08) &&
                ((quint8)answer[2] == (quint8)0xA0) &&
@@ -514,8 +517,7 @@ private:
                ((quint8)answer[4] == (quint8)0x32) &&
                ((quint8)answer[5] == (quint8)0x0F)) )
         {
-            PlotAnswer(answer);
-            std::cout << "  -> Error in device ID" << std::endl;
+            qWarning() << "  -> Error in device ID";
             return ERROR;
         }
         return SUCCESS;
@@ -602,12 +604,12 @@ private:
         if ( (quint8) receive[0] == (quint8) 0xEE &&
              (quint8) receive[1] == (quint8) 0x07 )
         {
-            std::cout << " overrun error" << std::endl;
+            qWarning() << " overrun error";
             return ERROR;
         }
         else if ( !((quint8)receive[0] == (quint8)0xBB) )
         {
-            std::cout << " error reading" << std::endl;
+            qWarning() << " error reading";
             return ERROR;
         }
 
@@ -634,7 +636,7 @@ private:
                ((quint8)receive[0] == (quint8)0xEE) &&
                ((quint8)receive[1] == (quint8)0x01)) )
         {
-            std::cout << "error in writing" << std::endl;
+            qWarning() << "error in writing";
             PlotAnswer(receive);
             return ERROR;
         }
@@ -650,12 +652,12 @@ private:
         // Clear the buffer
         serial.readAll();
         if(!serial.clear())
-            std::cout << "didn't clear well" << std::endl;
+            qWarning() << "didn't clear well";
 
         // Write the message
         serial.write(data);
         if (!serial.waitForBytesWritten(1000))
-            std::cout << "All the byte has not been written!!!" << std::endl;
+            qWarning() << "All the byte has not been written!!!";
 
         return;
 
@@ -676,7 +678,7 @@ private:
         }
         catch(std::exception ex)
         {
-            std::cout << "Exception in Register Writting : " << ex.what() << std::endl;
+            qWarning() << "Exception in Register Writting : " << ex.what();
         }
 
         return receive;

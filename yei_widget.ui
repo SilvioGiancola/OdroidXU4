@@ -6,14 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>435</width>
-    <height>294</height>
+    <width>238</width>
+    <height>327</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Log</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QPushButton" name="pushButton_Open">
      <property name="text">
@@ -52,6 +62,13 @@
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLineEdit" name="lineEdit_path">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
   </layout>

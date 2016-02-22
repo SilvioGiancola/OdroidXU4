@@ -1,16 +1,6 @@
-#if QT_VERSION >= 0x050000
-#include <QApplication>
-#else
-#include <QtGui>
-#endif
-#include <QMessageBox>
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
-
-using namespace std;
 
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -18,14 +8,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Set the user interface from Qt Designer
     ui->setupUi(this);
 
-    ui->lineEdit_path->setText(QString("%1/test.txt").arg(QDir::homePath()));
-
     server = new QTcpServer(this);
     socket = new QTcpSocket(this);
 
     connect (server, SIGNAL(newConnection()), this, SLOT(newTCPIPConnection()));
 
-    if (!server->listen(QHostAddress::Any,1234))
+    if (!server->listen(QHostAddress::Any, 1234))
         qDebug() << "Server could not start";
 
     else
@@ -41,29 +29,20 @@ MainWindow::~MainWindow()
 
 
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
 
-    MainWindow w;
-    w.showMaximized();
-
-    return a.exec();
-}
-
-void MainWindow::on_pushButton_openall_clicked()
+void MainWindow::OpenAllDevices()
 {
     ui->myIMU->openConnection();
     ui->myPololuController->openConnection();
 }
 
-void MainWindow::on_pushButton_closeall_clicked()
+void MainWindow::CloseAllDevices()
 {
     ui->myIMU->closeConnection();
     ui->myPololuController->closeConnection();
 }
 
-void MainWindow::on_pushButton_graball_clicked()
+void MainWindow::GrabAllDevices()
 {
     ui->myPololuController->impulseChannel0();
     Eigen::Quaternionf quat = ui->myIMU->getQuaternion();
@@ -80,17 +59,17 @@ void MainWindow::newTCPIPConnection()
 
     qDebug() << "New connection found";
 
-    socket->write("hello client");
+    socket->write("Hello client! :)");
     socket->flush();
 
     socket->waitForBytesWritten(3000);
 
-   // socket->close();
 }
 
 void MainWindow::newMessageReceived()
 {
-    QString message = QString(socket->readAll());
+    QString message = QString(socket->readAll());    
+    socket->write(message.append(" received!").toStdString().c_str());
     qDebug() << "Server received the following message : " << message;
     if (message == QString("Connect"))
     {
@@ -108,5 +87,10 @@ void MainWindow::newMessageReceived()
         Eigen::Quaternionf quat = ui->myIMU->getQuaternion();
     }
 }
+
+
+
+
+
 
 
