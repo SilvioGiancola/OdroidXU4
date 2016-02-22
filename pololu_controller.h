@@ -48,8 +48,10 @@ public:
             libusb_device *device = _device_list[i];
             {
                 for (int Id = 0; Id < 4; Id++)
-                {
-                    if (deviceMatchesVendorProduct(device, vendorId, productIDArray[Id]))
+                {                    
+                    libusb_device_descriptor desc;
+                    libusb_get_device_descriptor(device, &desc);
+                    if (vendorId == desc.idVendor && productIDArray[Id] == desc.idProduct)
                     {
                         _device = device;
                         libusb_open(_device, &_device_handle);
@@ -106,14 +108,6 @@ public:
 
 
 private:
-
-    bool deviceMatchesVendorProduct(libusb_device *device, unsigned short idVendor, unsigned short idProduct)
-    {
-        libusb_device_descriptor desc;
-        libusb_get_device_descriptor(device, &desc);
-        return idVendor == desc.idVendor && idProduct == desc.idProduct;
-    }
-
     bool _open;
     libusb_context *_ctx;
     libusb_device **_device_list;
@@ -121,7 +115,6 @@ private:
     libusb_device_handle *_device_handle;
 
     int _value[6];
-
 };
 
 #endif // POLOLU_CONTROLLER_H

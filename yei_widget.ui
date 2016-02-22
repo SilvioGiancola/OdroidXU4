@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>YEIWidget</class>
+ <widget class="QWidget" name="YEIWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>435</width>
+    <height>294</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QPushButton" name="pushButton_Open">
+     <property name="text">
+      <string>Open</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="pushButton_Close">
+     <property name="text">
+      <string>Close</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Measurements</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pushButton_Quaternion">
+        <property name="text">
+         <string>Get Quat</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="label_Quaternion">
+        <property name="text">
+         <string>Quaternion</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_Open</sender>
+   <signal>clicked()</signal>
+   <receiver>YEIWidget</receiver>
+   <slot>openConnection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Close</sender>
+   <signal>clicked()</signal>
+   <receiver>YEIWidget</receiver>
+   <slot>closeConnection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>204</x>
+     <y>54</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>432</x>
+     <y>167</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_Quaternion</sender>
+   <signal>clicked()</signal>
+   <receiver>YEIWidget</receiver>
+   <slot>getQuaternion()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>5</x>
+     <y>202</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>openConnection()</slot>
+  <slot>closeConnection()</slot>
+  <slot>getQuaternion()</slot>
+  <slot>initializeSensor()</slot>
+ </slots>
+</ui>

@@ -20,11 +20,12 @@ include_directories(SYSTEM ${LIBUSB1_INCLUDE_DIRS})
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5SerialPort REQUIRED)
+find_package(Qt5Network REQUIRED)
 
-QT5_WRAP_CPP(QT_HEADERS mainwindow.h pololu_controller_widget.h adafruit_widget.h)
-QT5_WRAP_UI(QT_UIS mainwindow.ui pololu_controller_widget.ui adafruit_widget.ui)
-set(HEADERS adafruit_uart.h pololu_controller.h protocol.h)
-set(SOURCES mainwindow.cpp pololu_controller_widget.cpp adafruit_widget.cpp)
+QT5_WRAP_CPP(QT_HEADERS mainwindow.h pololu_controller_widget.h adafruit_widget.h yei_widget.h)
+QT5_WRAP_UI(QT_UIS mainwindow.ui pololu_controller_widget.ui adafruit_widget.ui yei_widget.ui)
+set(HEADERS adafruit_uart.h yei_imu.h pololu_controller.h protocol.h)
+set(SOURCES mainwindow.cpp pololu_controller_widget.cpp adafruit_widget.cpp yei_widget.cpp)
 
-ADD_EXECUTABLE(testPololuGUI ${SOURCES} ${HEADERS} ${QT_HEADERS} ${QT_UIS}  )
-TARGET_LINK_LIBRARIES(testPololuGUI ${LIBUSB1_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5SerialPort_LIBRARIES})
+ADD_EXECUTABLE(OdroidSfM ${SOURCES} ${HEADERS} ${QT_HEADERS} ${QT_UIS}  )
+TARGET_LINK_LIBRARIES(OdroidSfM ${LIBUSB1_LIBRARIES} ${Qt5Widgets_LIBRARIES} ${Qt5SerialPort_LIBRARIES} ${Qt5Network_LIBRARIES})

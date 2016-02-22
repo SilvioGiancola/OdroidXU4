@@ -41,7 +41,7 @@ void PololuControllerWidget::impulseChannel0()
     myController->setPWM(channel,2000);
     QTime t;
     t.start();
-    while (t.elapsed() < 600)
+    while (t.elapsed() < 250)
     {
         ui->lcdNumber_timer->display(t.elapsed());
         ui->label_timer->setText(QString::number(t.elapsed()));

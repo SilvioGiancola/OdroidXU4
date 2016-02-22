@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>OdroidSfM</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="minimumSize">
@@ -105,11 +105,11 @@
        </widget>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="title">
-         <string>Adafruit IMU</string>
+         <string>YEI_IMU</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_5">
          <item row="0" column="0">
-          <widget class="AdafruitWidget" name="myAdafruit" native="true"/>
+          <widget class="YEIWidget" name="myIMU" native="true"/>
          </item>
         </layout>
        </widget>
@@ -139,9 +139,9 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>AdafruitWidget</class>
+   <class>YEIWidget</class>
    <extends>QWidget</extends>
-   <header>adafruit_widget.h</header>
+   <header>yei_widget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

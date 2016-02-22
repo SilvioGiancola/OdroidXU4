@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtGui/QCloseEvent>
-#include <pololu_controller.h>
+#include <QDebug>
+#include <QTcpServer>
+#include <QTcpSocket>
+
 
 namespace Ui {
 class MainWindow;
@@ -23,9 +25,14 @@ private slots:
     void on_pushButton_closeall_clicked();
 
     void on_pushButton_graball_clicked();
+    void newTCPIPConnection();
+    void newMessageReceived();
 
 private:
     Ui::MainWindow *ui;
+
+    QTcpServer *server;
+    QTcpSocket *socket;
 
 };
 #endif // MAINWINDOW_H
