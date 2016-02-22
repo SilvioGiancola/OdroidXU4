@@ -6,36 +6,9 @@
 
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
-#include <iostream>
-#include <iomanip>
-#include <QTime>
 
 #define SUCCESS 0
 #define ERROR 1
-#define ERR_DATABITS 2
-#define ERR_PARITY 3
-#define ERR_STOPBITS 4
-#define ERR_FLOWCONTROL 5
-#define ERR_OPEN 6
-#define ERR_PLUG 7
-#define ERR_MESSAGE 8
-#define ERR_BAUDRATE 9
-
-
-
-#define REG_PAGE_ID         0x07
-#define REG_START_RAW_DATA  0x08
-#define REG_START_ACC_DATA  0x08
-#define REG_START_MAG_DATA  0x0E
-#define REG_START_GYR_DATA  0x14
-#define REG_START_EUL_DATA  0x1A
-#define REG_START_QUA_DATA  0x20
-#define REG_START_LIA_DATA  0x28
-#define REG_START_GRV_DATA  0x2E
-#define REG_START_TMP_DATA  0x34
-#define REG_OPR_MODE        0x3D
-#define REG_PWR_MODE        0x3E
-#define REG_SYS_TRIGGER     0x3F
 
 
 #include <QWidget>
@@ -68,35 +41,35 @@ public:
         }
 
         if (serial.portName().isEmpty())
-            return ERR_PLUG;
+            return ERROR;
 
         if (!serial.open(QIODevice::ReadWrite))
-            return ERR_OPEN;
+            return ERROR;
 
         if (!serial.setBaudRate(QSerialPort::Baud115200))
-            return ERR_BAUDRATE;
+            return ERROR;
 
         if (!serial.setDataBits(QSerialPort::Data8))
-            return ERR_DATABITS;
+            return ERROR;
 
         if (!serial.setParity(QSerialPort::NoParity))
-            return ERR_PARITY;
+            return ERROR;
 
         if (!serial.setStopBits(QSerialPort::OneStop))
-            return ERR_STOPBITS;
+            return ERROR;
 
         if (!serial.setFlowControl(QSerialPort::NoFlowControl))
-            return ERR_FLOWCONTROL;
+            return ERROR;
 
-        //  serial.setReadBufferSize((qint64)1);
 
-        //returnPose();
+        qDebug () << " YEI IMU successfully opened";
 
         return SUCCESS;
     }
 
     void close()
     {
+        qDebug () << " YEI IMU closed";
         serial.close();
     }
 

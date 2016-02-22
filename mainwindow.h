@@ -22,13 +22,9 @@ public:
 
 private slots:
 
-    void OpenAllDevices();
-    void CloseAllDevices();
-    void GrabAllDevices();
-
-
     void newTCPIPConnection();
     void newMessageReceived();
+    void clientStateChanged(QAbstractSocket::SocketState);
 
 private:
     Ui::MainWindow *ui;

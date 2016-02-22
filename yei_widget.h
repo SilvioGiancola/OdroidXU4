@@ -2,6 +2,7 @@
 #define YEI_WIDGET_H
 
 #include <QWidget>
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include "yei_imu.h"

@@ -7,6 +7,7 @@
 #define SUCCESS 0
 #define ERROR 1
 
+#include <QDebug>
 #include <iostream>
 #include <libusb.h>
 #include "protocol.h"
@@ -57,6 +58,8 @@ public:
                         libusb_open(_device, &_device_handle);
                         _open = true;
                         return SUCCESS;
+
+                        qDebug () << " Pololu successfully opened";
                     }
                 }
             }
@@ -73,6 +76,7 @@ public:
             libusb_free_device_list(_device_list, 0);
             libusb_exit(_ctx);
             _open = false;
+            qDebug () << " Pololu closed";
         }
     }
 

@@ -24,7 +24,7 @@ find_package(Qt5Network REQUIRED)
 
 QT5_WRAP_CPP(QT_HEADERS mainwindow.h pololu_controller_widget.h adafruit_widget.h yei_widget.h yei_imu.h)
 QT5_WRAP_UI(QT_UIS mainwindow.ui pololu_controller_widget.ui adafruit_widget.ui yei_widget.ui)
-set(HEADERS adafruit_uart.h pololu_controller.h protocol.h)
+set(HEADERS adafruit_uart.h pololu_controller.h protocol.h yei_imu.h)
 set(SOURCES main.cpp mainwindow.cpp pololu_controller_widget.cpp adafruit_widget.cpp yei_widget.cpp)
 
 ADD_EXECUTABLE(OdroidSfM ${SOURCES} ${HEADERS} ${QT_HEADERS} ${QT_UIS}  )

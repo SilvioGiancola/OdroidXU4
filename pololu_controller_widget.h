@@ -25,7 +25,6 @@ public slots:
     void closeConnection();
 
     void impulseChannel0();
-
     void impulseChannel1() {myController->impulse(1);}
     void impulseChannel2() {myController->impulse(2);}
     void impulseChannel3() {myController->impulse(3);}
