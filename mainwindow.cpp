@@ -8,15 +8,24 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Set the user interface from Qt Designer
     ui->setupUi(this);
 
+    _port = 1234;
+
     server = new QTcpServer(this);
     socket = new QTcpSocket(this);
 
     connect (server, SIGNAL(newConnection()), this, SLOT(newTCPIPConnection()));
 
-    if (server->listen(QHostAddress::Any, 1234))
+    if (server->listen(QHostAddress::Any, _port))
         qDebug() << "Server started";
     else
         qDebug() << "Server could not start";
+
+
+    foreach (const QHostAddress &address, QNetworkInterface::allAddresses())
+        if(address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress(QHostAddress::LocalHost))
+            ui->label_IP->setText(QString("My IP address is : %1 (TCPIP server on port %2)").arg(address.toString()).arg(_port));
+
+
 }
 
 // Destructor
@@ -26,13 +35,13 @@ MainWindow::~MainWindow()
 }
 
 
-
 void MainWindow::newTCPIPConnection()
 {
     socket = server->nextPendingConnection();
 
     connect (socket, SIGNAL(readyRead()), this, SLOT(newMessageReceived()));
     connect (socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(clientStateChanged(QAbstractSocket::SocketState)));
+    clientStateChanged(socket->state());
 
     socket->write("Hello client! :)");
 }
@@ -62,9 +71,16 @@ void MainWindow::newMessageReceived()
     qDebug() << "Server received the following message : " << message;
     if (message == QString("Connect"))
     {
-        ui->myIMU->openConnection();
-        ui->myPololuController->openConnection();
-        socket->write("connected!");
+        if (ui->myIMU->openConnection() == SUCCESS)
+            socket->write("IMU connected!");
+        else
+            socket->write("ERROR in IMU connection!");
+
+        if (ui->myPololuController->openConnection() == SUCCESS)
+            socket->write("Pololu connected!");
+        else
+            socket->write("ERROR in Pololu connection!");
+
     }
     else if(message == QString("Disconnect"))
     {

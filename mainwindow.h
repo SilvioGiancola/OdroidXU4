@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QNetworkInterface>
 #include <QDir>
 
 
@@ -31,6 +32,7 @@ private:
 
     QTcpServer *server;
     QTcpSocket *socket;
+    int _port;
 
 };
 #endif // MAINWINDOW_H

@@ -7,7 +7,7 @@
 PololuControllerWidget::PololuControllerWidget(QWidget * parent) : QWidget(parent), ui(new Ui::PololuControllerWidget)
 {
     ui->setupUi(this);
-    myController = new PololuController();
+    myController = new PololuController(this);
 }
 
 PololuControllerWidget::~PololuControllerWidget()
@@ -18,15 +18,18 @@ PololuControllerWidget::~PololuControllerWidget()
 }
 
 
-void PololuControllerWidget::openConnection()
+int PololuControllerWidget::openConnection()
 {
-    if (myController->open() == SUCCESS)
+    int res = myController->open();
+    if (res == SUCCESS)
         ui->groupBox->setEnabled(true);
+    return res;
 }
 
 void PololuControllerWidget::closeConnection()
 {
-    myController->close();
+    if (myController->isopen())
+        myController->close();
     ui->groupBox->setEnabled(false);
 }
 

@@ -6,6 +6,7 @@ YEIWidget::YEIWidget(QWidget * parent) : QWidget(parent), ui(new Ui::YEIWidget)
 {
     ui->setupUi(this);
     myIMU = new YEI_IMU(this);
+    myLogFile = new QFile();
 }
 
 YEIWidget::~YEIWidget()
@@ -15,9 +16,10 @@ YEIWidget::~YEIWidget()
 }
 
 
-void YEIWidget::openConnection()
+int YEIWidget::openConnection()
 {
-    if(myIMU->open() == SUCCESS)
+    int res = myIMU->open();
+    if(res == SUCCESS)
     {
         ui->groupBox->setEnabled(true);
 
@@ -27,7 +29,7 @@ void YEIWidget::openConnection()
         myLogFile->open(QIODevice::WriteOnly);
         ui->lineEdit_path->setText(path);
     }
-    return;
+    return res;
 }
 
 void YEIWidget::closeConnection()
@@ -35,7 +37,7 @@ void YEIWidget::closeConnection()
     if(myLogFile->isOpen())
         myLogFile->close();
     if(myIMU->isOpen())
-        if(myIMU->isOpen())myIMU->close();
+        myIMU->close();
     ui->groupBox->setEnabled(false);
     return;
 }

@@ -22,7 +22,7 @@ public:
 
 
 public slots:
-    void openConnection();
+    int openConnection();
     void closeConnection();
 
     Eigen::Quaternionf getQuaternion();

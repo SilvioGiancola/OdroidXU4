@@ -21,7 +21,7 @@ public:
 
 
 public slots:
-    void openConnection();
+    int openConnection();
     void closeConnection();
 
     void impulseChannel0();

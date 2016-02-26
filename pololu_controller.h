@@ -7,18 +7,19 @@
 #define SUCCESS 0
 #define ERROR 1
 
+#include <QWidget>
 #include <QDebug>
-#include <iostream>
 #include <libusb.h>
-#include "protocol.h"
-#include <unistd.h>
+#include "pololu_protocol.h"
+#include <unistd.h>  // uslpeep
 
-class PololuController
+class PololuController : public QWidget
 {
+    Q_OBJECT
 public:
 
     // Constructor
-    explicit PololuController()
+    explicit PololuController(QWidget *parent = 0) : QWidget(parent)
     {
         _ctx = 0;
         _device_list = 0;
