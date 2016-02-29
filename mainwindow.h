@@ -27,12 +27,14 @@ private slots:
     void newMessageReceived();
     void clientStateChanged(QAbstractSocket::SocketState);
 
+
 private:
     Ui::MainWindow *ui;
 
     QTcpServer *server;
     QTcpSocket *socket;
     int _port;
+
 
 };
 #endif // MAINWINDOW_H

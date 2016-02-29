@@ -21,11 +21,25 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         qDebug() << "Server could not start";
 
 
-    foreach (const QHostAddress &address, QNetworkInterface::allAddresses())
-        if(address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress(QHostAddress::LocalHost))
-            ui->label_IP->setText(QString("My IP address is : %1 (TCPIP server on port %2)").arg(address.toString()).arg(_port));
 
+    bool connectionFind = false;
+    while (!connectionFind)
+    {
+        foreach (const QHostAddress &address, QNetworkInterface::allAddresses())
+            if(address.protocol() == QAbstractSocket::IPv4Protocol && address != QHostAddress(QHostAddress::LocalHost))
+            {
+                ui->label_IP->setText(QString("My IP address is : %1 (TCPIP server on port %2)").arg(address.toString()).arg(_port));
+                connectionFind = true;
 
+            }
+
+        if (!connectionFind)
+        {
+            qDebug () << "waiting for a network connection";
+            qApp->processEvents();
+            usleep(1000*1000);
+        }
+    }
 }
 
 // Destructor
@@ -33,6 +47,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 
 
 void MainWindow::newTCPIPConnection()
@@ -92,7 +107,8 @@ void MainWindow::newMessageReceived()
     {
         ui->myPololuController->impulseChannel0();
         Eigen::Quaternionf quat = ui->myIMU->getQuaternion();
-        socket->write("grabbed!");
+        QString message = QString("grabbed! quat are (w, x, y, z): %1, %2, %3, %4").arg(quat.w()).arg(quat.x()).arg(quat.y()).arg(quat.z());
+        socket->write(message.toStdString().c_str());
     }
 }
 
