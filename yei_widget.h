@@ -28,6 +28,9 @@ public slots:
     Eigen::Quaternionf getQuaternion();
 
 
+private slots:
+    void on_pushButton_TareQuat_clicked();
+
 private:
     Ui::YEIWidget *ui;
     YEI_IMU * myIMU;

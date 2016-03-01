@@ -41,26 +41,40 @@ public:
         }
 
         if (serial.portName().isEmpty())
+        {
+            qWarning() << " Error in finding ports";
             return ERROR;
-
+        }
         if (!serial.open(QIODevice::ReadWrite))
+        {
+            qWarning() << " Error in openning device";
             return ERROR;
-
+        }
         if (!serial.setBaudRate(QSerialPort::Baud115200))
+        {
+            qWarning() << " Error in setting baudrate";
             return ERROR;
-
+        }
         if (!serial.setDataBits(QSerialPort::Data8))
+        {
+            qWarning() << " Error in setting 8 bits";
             return ERROR;
-
+        }
         if (!serial.setParity(QSerialPort::NoParity))
+        {
+            qWarning() << " Error in setting not parity";
             return ERROR;
-
+        }
         if (!serial.setStopBits(QSerialPort::OneStop))
+        {
+            qWarning() << " Error in setting onestop";
             return ERROR;
-
+        }
         if (!serial.setFlowControl(QSerialPort::NoFlowControl))
+        {
+            qWarning() << " Error in setting no flow control";
             return ERROR;
-
+        }
 
         qDebug () << " YEI IMU successfully opened";
 

@@ -110,6 +110,21 @@ void MainWindow::newMessageReceived()
         QString message = QString("grabbed! quat are (w, x, y, z): %1, %2, %3, %4").arg(quat.w()).arg(quat.x()).arg(quat.y()).arg(quat.z());
         socket->write(message.toStdString().c_str());
     }
+    else if(message.contains("GrabMult"))
+    {
+        message.remove(0,8);
+        int loop = message.toInt();
+
+        for (int i = 0; i<loop; i++)
+        {
+            ui->myPololuController->impulseChannel0();
+            Eigen::Quaternionf quat = ui->myIMU->getQuaternion();
+            QString message = QString("grabbed %1 ! quat are (w, x, y, z): %2, %3, %4, %5").arg(i).arg(quat.w()).arg(quat.x()).arg(quat.y()).arg(quat.z());
+            socket->write(message.toStdString().c_str());
+            socket->waitForBytesWritten(1000);
+            QThread::sleep(1);
+        }
+    }
 }
 
 

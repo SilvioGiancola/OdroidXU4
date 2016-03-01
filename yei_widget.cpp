@@ -53,6 +53,10 @@ Eigen::Quaternionf YEIWidget::getQuaternion()
     QString label = QString("%1 %2 %3 %4 %5").arg(QDateTime::currentMSecsSinceEpoch()).arg(quat.w()).arg(quat.x()).arg(quat.y()).arg(quat.z());
     ui->label_Quaternion->setText(label);
 
+    double angle = 2 * std::acos(quat.w());
+    QString anglestring = QString("%1").arg(angle*180/3.14159);
+
+    ui->label_AngleDegree->setText(anglestring);
     QTextStream out (myLogFile);
     out << label << "\n";
 
@@ -60,3 +64,9 @@ Eigen::Quaternionf YEIWidget::getQuaternion()
 }
 
 
+
+void YEIWidget::on_pushButton_TareQuat_clicked()
+{
+    myIMU->setTareOrientationQuaternion();
+    getQuaternion();
+}

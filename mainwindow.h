@@ -7,6 +7,7 @@
 #include <QTcpSocket>
 #include <QNetworkInterface>
 #include <QDir>
+#include <QThread>
 
 
 namespace Ui {
