@@ -6,6 +6,8 @@
 
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+#include <iostream>
+#include <fstream>
 
 #define SUCCESS 0
 #define ERROR 1
@@ -75,6 +77,44 @@ public:
             qWarning() << " Error in setting no flow control";
             return ERROR;
         }
+
+        std::string filename = "../SfMCalib.txt";
+        Eigen::Matrix4f m;
+        std::ifstream input(filename.c_str());
+        if (input.fail())
+        {
+            std::cerr << "ERROR. Cannot find file '" << filename << "'." << std::endl;
+            m = Eigen::Matrix4f(0,0);
+            return false;
+        }
+        std::string line;
+        float d;
+
+        std::vector<float> v;
+        int n_rows = 0;
+        while (getline(input, line))
+        {
+            ++n_rows;
+            std::stringstream input_line(line);
+            while (!input_line.eof())
+            {
+                input_line >> d;
+                v.push_back(d);
+            }
+        }
+        input.close();
+
+        int n_cols = v.size()/n_rows;
+        m = Eigen::Matrix4f(n_rows,n_cols);
+
+        for (int i=0; i<n_rows; i++)
+            for (int j=0; j<n_cols; j++)
+                m(i,j) = v[i*n_cols + j];
+
+
+
+
+        setTareOrientationQuaternion(Eigen::Quaternionf(m.block<3,3>(0,0)));
 
         qDebug () << " YEI IMU successfully opened";
 
