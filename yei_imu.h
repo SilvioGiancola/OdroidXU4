@@ -112,7 +112,8 @@ public:
                 m(i,j) = v[i*n_cols + j];
 
 
-
+        std::cout << "calib is " << std::endl;
+        std::cout << m << std::endl;
 
         setTareOrientationQuaternion(Eigen::Quaternionf(m.block<3,3>(0,0)));
 
